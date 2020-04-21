@@ -1,20 +1,23 @@
-// import { GET_POSTS, GET_POSTS_SUCCESS, GET_POSTS_FAILURE } from '../actions/postsActions'
+import { TILE_FLIP } from '../actions/gameActions'
 
-const initialState = {
-  tiles: []
+import { initialState } from './initialState'
+
+const gameReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case TILE_FLIP:
+      return Object.assign({}, state, {
+        tiles: state.tiles.map((tile, index) => {
+          if (index === action.index) {
+            return Object.assign({}, tile, {
+              isShown: !tile.isShown
+            })
+          }
+          return tile
+        })
+      })
+    default:
+      return state
+  }
 }
-//
-// const postsReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case GET_POSTS:
-//       return { ...state, loading: true }
-//     case GET_POSTS_SUCCESS:
-//       return { posts: action.payload, loading: false, hasErrors: false }
-//     case GET_POSTS_FAILURE:
-//       return { ...state, loading: false, hasErrors: true }
-//     default:
-//       return state
-//   }
-// }
-//
-// export { initialState, postsReducer }
+
+export { gameReducer }
