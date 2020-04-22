@@ -1,26 +1,43 @@
-import { shuffle } from '../utils'
+import { shuffle, rainbow } from '../utils'
 
-const tileNames = ['A', 'B', 'C', 'D', 'E', 'F']
-const initialState = createInitialState(tileNames)
+const initialState = createInitialState()
 
-function createInitialState(names) {
+function createInitialState() {
   const tiles = []
-  const shuffledNames = shuffle([...tileNames])
-  for (let i = 0; i < names.length; i++) {
-    tiles.push(createTile(shuffledNames, i))
+  const tileInfo = createInfo()
+  const total = tileInfo.length
+  const doubleInfo = [...tileInfo].concat([...tileInfo])
+  const shuffledInfo = shuffle(doubleInfo)
+  for (let i = 0; i < shuffledInfo.length; i++) {
+    const { name, color } = shuffledInfo[i]
+    tiles.push(createTile(name, color, i))
   }
 
   return {
-    tiles
+    tiles,
+    total,
+    foundCount: 0,
+    flippedTiles: [],
+    allowInteraction: true,
+    foundAll: false
   }
 }
 
-function createTile(names, index) {
+function createInfo() {
+  const info = []
+  const tileNames = ['A', 'B', 'C', 'D', 'E', 'F']
+  const len = tileNames.length
+  for (let i = 0; i < len; i++) {
+    info.push({ name: tileNames[i], color: rainbow(len, i)})
+  }
+  return info
+}
+
+function createTile(name, color, index) {
   return {
     index: index,
-    name: names[index],
-    img: null,
-    color: '#'+Math.floor(Math.random()*16777215).toString(16),
+    name: name,
+    color: color,
     isShown: false,
     isFound: false
   }

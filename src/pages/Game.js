@@ -9,8 +9,6 @@ import { Tile } from '../components/Tile'
 
 const GameBase = ({ dispatch, tiles }) => {
 
-  console.log(tiles)
-
   const renderTiles = () => {
     const len = tiles.length
     let rows = Math.ceil(Math.sqrt(len))
