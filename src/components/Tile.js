@@ -5,15 +5,15 @@ import { connect } from 'react-redux'
 
 import { flipTile, checkMatch } from '../actions/gameActions'
 
-const TileBase = ({ flippedTiles, allowInteraction, flipTile, checkMatch, tile }) => {
-
+const TileBase = ({ flippedTiles, allowInteraction, guesses, flipTile, checkMatch, tile }) => {
   const handleClick = () => {
-    if (allowInteraction) {
+    if (allowInteraction && !tile.isShown) {
       console.log('clicked - ' + tile.name)
       flipTile(tile.index)
 
       if (flippedTiles.length) {
-        setTimeout(checkMatch, 500)
+        console.log('TRY <-----> ', guesses + 1)
+        setTimeout(checkMatch, 800)
       }
     }
   }
@@ -47,7 +47,8 @@ TileBase.propTypes = {
 
 const mapStateToProps = state => ({
   allowInteraction: state.game.allowInteraction,
-  flippedTiles: state.game.flippedTiles
+  flippedTiles: state.game.flippedTiles,
+  guesses: state.game.guesses
 })
 
 const mapDispatchToProps = dispatch => ({

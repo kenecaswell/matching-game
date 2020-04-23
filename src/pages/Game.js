@@ -7,14 +7,13 @@ import Col from 'react-bootstrap/Col'
 
 import { Tile } from '../components/Tile'
 
-const GameBase = ({ dispatch, tiles }) => {
-
+const GameBase = ({ dispatch, tiles, guesses, foundAll }) => {
   const renderTiles = () => {
     const len = tiles.length
-    let rows = Math.ceil(Math.sqrt(len))
+    const rows = Math.ceil(Math.sqrt(len))
     const rowsDisplay = []
     for (let i = 0; i < rows; i++) {
-      const row = <Row key={`row-${i}`}>{ renderRowTiles(rows, i)}</Row>
+      const row = <Row key={`row-${i}`}>{renderRowTiles(rows, i)}</Row>
       rowsDisplay.push(row)
     }
 
@@ -37,6 +36,8 @@ const GameBase = ({ dispatch, tiles }) => {
     return tilesInRow
   }
 
+  const foundText = foundAll ? 'Congratulations! You found all the matches!' : ''
+
   return (
     <div className='game'>
       <header className='game-header'>
@@ -45,15 +46,23 @@ const GameBase = ({ dispatch, tiles }) => {
         </p>
       </header>
       <Container fluid>
-        { renderTiles() }
+        {renderTiles()}
       </Container>
+      <section>
+        Number of tries: {guesses}
+      </section>
+      <section>
+        {foundText}
+      </section>
     </div>
   )
 }
 
 // Map Redux state to React component props
 const mapStateToProps = state => ({
-  tiles: state.game.tiles
+  tiles: state.game.tiles,
+  guesses: state.game.guesses,
+  foundAll: state.game.foundAll
 })
 
 const Game = connect(mapStateToProps)(GameBase)

@@ -11,20 +11,20 @@ const MATCH_FAILED = 'MATCH_FAILED'
  * Action Creators
  */
 
-function flipTile(index) {
+function flipTile (index) {
   return {
     type: TILE_FLIP,
     index
   }
 }
 
-function checkMatch() {
+function checkMatch () {
   return {
     type: MATCH_CHECK
   }
 }
 
-function foundMatch(index1, index2) {
+function foundMatch (index1, index2) {
   return {
     type: MATCH_FOUND,
     index1,
@@ -32,7 +32,7 @@ function foundMatch(index1, index2) {
   }
 }
 
-function failedMatch(index1, index2) {
+function failedMatch (index1, index2) {
   return {
     type: MATCH_FAILED,
     index1,

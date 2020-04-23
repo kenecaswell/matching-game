@@ -2,7 +2,7 @@ import { shuffle, rainbow } from '../utils'
 
 const initialState = createInitialState()
 
-function createInitialState() {
+function createInitialState () {
   const tiles = []
   const tileInfo = createInfo()
   const total = tileInfo.length
@@ -16,6 +16,7 @@ function createInitialState() {
   return {
     tiles,
     total,
+    guesses: 0,
     foundCount: 0,
     flippedTiles: [],
     allowInteraction: true,
@@ -23,17 +24,17 @@ function createInitialState() {
   }
 }
 
-function createInfo() {
+function createInfo () {
   const info = []
   const tileNames = ['A', 'B', 'C', 'D', 'E', 'F']
   const len = tileNames.length
   for (let i = 0; i < len; i++) {
-    info.push({ name: tileNames[i], color: rainbow(len, i)})
+    info.push({ name: tileNames[i], color: rainbow(len, i) })
   }
   return info
 }
 
-function createTile(name, color, index) {
+function createTile (name, color, index) {
   return {
     index: index,
     name: name,
