@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 
 import { flipTile, checkMatch } from '../actions/gameActions'
 
+import logo from '../logo.svg'
+import './tile.css'
+
 const TileBase = ({ flippedTiles, allowInteraction, guesses, flipTile, checkMatch, tile }) => {
   const handleClick = () => {
     if (allowInteraction && !tile.isShown) {
@@ -12,27 +15,35 @@ const TileBase = ({ flippedTiles, allowInteraction, guesses, flipTile, checkMatc
       flipTile(tile.index)
 
       if (flippedTiles.length) {
-        console.log('TRY <-----> ', guesses + 1)
         setTimeout(checkMatch, 800)
       }
     }
   }
 
-  const color = tile.isShown ? tile.color : '#FFFFFF'
-  const name = tile.isShown ? tile.name : 'MATCH ME!'
+  const cardClass = tile.isShown ? 'tile flip' : 'tile'
   const visible = tile.isFound ? 'hidden' : 'visible'
 
   return (
     <Card
+      className={cardClass}
       style={{
-        width: '10rem',
-        height: '10rem',
-        backgroundColor: color,
         visibility: visible
       }}
       onClick={handleClick}
     >
-      <Card.Body>{name}</Card.Body>
+      <div className='tile-inner'>
+        <Card.Text className='tile-front'>
+          <img src={logo} className='app-logo' alt='logo' />
+        </Card.Text>
+        <Card.Text
+          className='tile-back'
+          style={{
+            backgroundColor: tile.color
+          }}
+        >
+          {tile.name}
+        </Card.Text>
+      </div>
     </Card>
   )
 }
