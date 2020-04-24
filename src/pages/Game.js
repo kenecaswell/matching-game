@@ -6,6 +6,9 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import { Tile } from '../components/Tile'
+import { CompletionModal } from '../components/CompletionModal'
+
+import './game.css'
 
 const GameBase = ({ dispatch, tiles, guesses, foundAll }) => {
   const renderTiles = () => {
@@ -36,24 +39,28 @@ const GameBase = ({ dispatch, tiles, guesses, foundAll }) => {
     return tilesInRow
   }
 
-  const foundText = foundAll ? 'Congratulations! You found all the matches!' : ''
-
   return (
     <div className='game'>
-      <header className='game-header'>
-        <p>
-          Find all the matching tiles!
-        </p>
+      <header>
+        <Container fluid>
+          <Row xs={12}>
+            <Col xs={7}>
+              <div className='game-header'>
+                Find all the matching tiles!
+              </div>
+            </Col>
+            <Col xs={5}>
+              <div className='game-info'>
+                Number of tries: {guesses}
+              </div>
+            </Col>
+          </Row>
+        </Container>
       </header>
-      <Container fluid>
+      <Container>
         {renderTiles()}
       </Container>
-      <section>
-        Number of tries: {guesses}
-      </section>
-      <section>
-        {foundText}
-      </section>
+      <CompletionModal />
     </div>
   )
 }

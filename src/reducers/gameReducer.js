@@ -1,6 +1,6 @@
-import { TILE_FLIP, MATCH_CHECK } from '../actions/gameActions'
+import { TILE_FLIP, MATCH_CHECK, GAME_RESTART, GAME_NEW } from '../actions/gameActions'
 
-import { initialState } from './initialState'
+import { initialState, createInitialState } from './initialState'
 
 const gameReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -8,6 +8,10 @@ const gameReducer = (state = initialState, action) => {
       return flipTileReducer(state, action)
     case MATCH_CHECK:
       return checkMatchReducer(state, action)
+    case GAME_RESTART:
+      return initialState
+    case GAME_NEW:
+      return createInitialState(action.size)
     default:
       return state
   }

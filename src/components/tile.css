@@ -4,11 +4,18 @@
 
 .tile {
   background-color: transparent;
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   perspective: 1000px;
   margin-bottom: 35px;
   cursor: pointer;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .tile-inner {
@@ -33,7 +40,7 @@
 }
 
 .tile-front {
-  background-color: #b2fff3;
+  background-color: #123123;
   color: black;
 }
 
@@ -44,7 +51,8 @@
 
 .tile-back {
   color: white;
-  font-size: 2rem;
+  padding: 4px;
+  font-size: 1.5rem;
   text-shadow: 1px 1px 2px #333;
   display: flex;
   flex-direction: column;

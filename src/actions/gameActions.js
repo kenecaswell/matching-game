@@ -4,8 +4,8 @@
 
 const TILE_FLIP = 'TILE_FLIP'
 const MATCH_CHECK = 'MATCH_CHECK'
-const MATCH_FOUND = 'MATCH_FOUND'
-const MATCH_FAILED = 'MATCH_FAILED'
+const GAME_RESTART = 'GAME_RESTART'
+const GAME_NEW = 'GAME_NEW'
 
 /*
  * Action Creators
@@ -24,29 +24,26 @@ function checkMatch () {
   }
 }
 
-function foundMatch (index1, index2) {
+function restartGame () {
   return {
-    type: MATCH_FOUND,
-    index1,
-    index2
+    type: GAME_RESTART
   }
 }
 
-function failedMatch (index1, index2) {
+function newGame (size = 10) {
   return {
-    type: MATCH_FAILED,
-    index1,
-    index2
+    type: GAME_NEW,
+    size
   }
 }
 
 export {
   TILE_FLIP,
   MATCH_CHECK,
-  MATCH_FOUND,
-  MATCH_FAILED,
+  GAME_RESTART,
+  GAME_NEW,
   flipTile,
   checkMatch,
-  foundMatch,
-  failedMatch
+  restartGame,
+  newGame
 }

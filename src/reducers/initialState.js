@@ -1,10 +1,23 @@
 import { shuffle, rainbow } from '../utils'
 
-const initialState = createInitialState()
+const tileNames = [
+  'Ant Man',
+  'Batman',
+  'Captain America',
+  'Iron Man',
+  'Wonder Woman',
+  'Thor',
+  'Superman',
+  'Flash',
+  'Hulk',
+  'Spider Man'
+]
 
-function createInitialState () {
+const initialState = createInitialState(2)
+
+function createInitialState (size) {
   const tiles = []
-  const tileInfo = createInfo()
+  const tileInfo = createInfo(size)
   const total = tileInfo.length
   const doubleInfo = [...tileInfo].concat([...tileInfo])
   const shuffledInfo = shuffle(doubleInfo)
@@ -14,8 +27,9 @@ function createInitialState () {
   }
 
   return {
-    tiles,
+    size,
     total,
+    tiles,
     guesses: 0,
     foundCount: 0,
     flippedTiles: [],
@@ -24,12 +38,10 @@ function createInitialState () {
   }
 }
 
-function createInfo () {
+function createInfo (size = tileNames.length) {
   const info = []
-  const tileNames = ['A', 'B', 'C', 'D', 'E', 'F']
-  const len = tileNames.length
-  for (let i = 0; i < len; i++) {
-    info.push({ name: tileNames[i], color: rainbow(len, i) })
+  for (let i = 0; i < size; i++) {
+    info.push({ name: tileNames[i], color: rainbow(size, i) })
   }
   return info
 }
@@ -44,4 +56,4 @@ function createTile (name, color, index) {
   }
 }
 
-export { initialState }
+export { initialState, createInitialState }
