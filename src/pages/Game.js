@@ -40,12 +40,12 @@ const GameBase = ({ dispatch, tiles, guesses, foundAll }) => {
   }
 
   return (
-    <div className='game'>
-      <header>
+    <div>
+      <header className='game-header'>
         <Container fluid>
           <Row xs={12}>
             <Col xs={7}>
-              <div className='game-header'>
+              <div className='game-title'>
                 Find all the matching tiles!
               </div>
             </Col>

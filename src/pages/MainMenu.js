@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 import logo from '../logo.svg'
 import './main.css'
@@ -17,12 +17,12 @@ const MainMenu = () => (
           </div>
         </div>
       </div>
-      <p>
-        This is a fun game of matching tiles!
-      </p>
-      <Link to='/game' className='button'>
-        Start Game!
-      </Link>
+      <section>
+        <p>A fun game of matching tiles!</p>
+        <Button href="/game" variant="primary" size="lg">
+          Start Game!
+        </Button>
+      </section>
     </header>
   </div>
 )

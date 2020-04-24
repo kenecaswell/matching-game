@@ -13,7 +13,7 @@ const tileNames = [
   'Spider Man'
 ]
 
-const initialState = createInitialState(2)
+const initialState = createInitialState()
 
 function createInitialState (size) {
   const tiles = []
@@ -27,7 +27,6 @@ function createInitialState (size) {
   }
 
   return {
-    size,
     total,
     tiles,
     guesses: 0,
